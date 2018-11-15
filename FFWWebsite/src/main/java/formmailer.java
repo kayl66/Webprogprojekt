@@ -24,8 +24,8 @@ import org.simplejavamail.mailer.config.TransportStrategy;
 @WebServlet(urlPatterns = {"/formmailer"})
 public class formmailer extends HttpServlet {
     private static final String GOOGLEMAILADRESSE = "...@gmail.com"; //Googlemailadresse nutzen um SMTP Server zu nutzen
-    private static final String PASSWORD = ""; //Passwort für Googel um SMTP Server zu nutzen
-    private static final String MAILADRESSE = "..."; //Mailadresse zu der die E-Mail gesendet werden soll
+    private static final String PASSWORD = "..."; //Passwort für Google um SMTP Server zu nutzen
+    private static final String MAILADRESSE = "..."; //Mailadresse an welche die E-Mail gesendet werden soll
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,16 +40,7 @@ public class formmailer extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet formmailer</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet formmailer at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            response.sendRedirect("http://localhost:8080/FFWWebsite/sucess.html#kontakt");
         }
     }
 
@@ -99,7 +90,7 @@ public class formmailer extends HttpServlet {
     private void mailer(String name, String email,String betreff, String nachricht) {
         Email mail = EmailBuilder.startingBlank()
                 .from(name, email)
-                .to("", MAILADRESSE)
+                .to(" ", MAILADRESSE)
                 .withSubject(betreff)
                 .withPlainText(nachricht)
                 .buildEmail();
